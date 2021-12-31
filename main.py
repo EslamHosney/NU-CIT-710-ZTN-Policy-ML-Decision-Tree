@@ -22,6 +22,9 @@ if __name__ == "__main__":
     static = StaticPolicyAgent().validateFlow(flow)
     feeds = SecurityFeeds().validateFlow(flow)
     ml = MLPolicies().validateFlow(flow)
+
+    if None == None:
+        print ("Working")
     
     
     

@@ -6,12 +6,6 @@ Created on Thu Dec 23 12:35:12 2021
 """
 import netaddr
 
-from DAAS import DAAS
-from KiplingTrafficFlow import KiplingTrafficFlow
-from StaticPolicyAgent import StaticPolicyAgent
-from SecurityFeeds import SecurityFeeds
-from MLPolicies import MLPolicies
-
 class DAAS:
     """
     Palo Alto Networks | Simplify Zero Trust Implementation with a Five-Step Methodology | White Paper 1

@@ -6,12 +6,6 @@ Created on Thu Dec 23 12:37:56 2021
 """
 import netaddr
 
-from DAAS import DAAS
-from KiplingTrafficFlow import KiplingTrafficFlow
-from StaticPolicyAgent import StaticPolicyAgent
-from SecurityFeeds import SecurityFeeds
-from MLPolicies import MLPolicies
-
 class MLPolicies:
     """
     Machine learning could be used to discover hidden patterns in data. 
@@ -32,5 +26,5 @@ class MLPolicies:
         self.ip = ip
 
     def validateFlow(self,flow):
-        #return routeing table
+        #return action based on ML Policies input might be (True, None, False)
         return True

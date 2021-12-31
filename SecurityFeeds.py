@@ -6,12 +6,6 @@ Created on Thu Dec 23 12:37:42 2021
 """
 import netaddr
 
-from DAAS import DAAS
-from KiplingTrafficFlow import KiplingTrafficFlow
-from StaticPolicyAgent import StaticPolicyAgent
-from SecurityFeeds import SecurityFeeds
-from MLPolicies import MLPolicies
-
 class SecurityFeeds:
     """
     Gather information from different resources Continuous diagnostics and 
@@ -27,5 +21,5 @@ class SecurityFeeds:
         self.ip = ip
 
     def validateFlow(self,flow):
-        #return routeing table
+        #return action based on Security Feeds input might be (True, None, False)
         return True

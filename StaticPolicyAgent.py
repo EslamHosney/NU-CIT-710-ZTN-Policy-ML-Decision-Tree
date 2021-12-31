@@ -6,12 +6,6 @@ Created on Thu Dec 23 12:37:23 2021
 """
 import netaddr
 
-from DAAS import DAAS
-from KiplingTrafficFlow import KiplingTrafficFlow
-from StaticPolicyAgent import StaticPolicyAgent
-from SecurityFeeds import SecurityFeeds
-from MLPolicies import MLPolicies
-
 class StaticPolicyAgent:
     """
     It’s a well known fact by now that ZT policies contain more data/input than
@@ -27,6 +21,6 @@ class StaticPolicyAgent:
         self.ip = ip
 
     def validateFlow(self,flow):
-        #return routeing table
+        #return action based on Static Security input might be (True, None, False)
         return True
     
