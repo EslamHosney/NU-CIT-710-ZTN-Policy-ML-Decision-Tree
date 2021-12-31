@@ -1,0 +1,7 @@
+UserID,destinationID,AppID,ContentID,When,Where,Action
+"Eslam","Server","SSH","Content","Noon","Cairo","allow"
+"Ahmed","Server","SSH","Content","Noon","Cairo","deny"
+"Eslam","Server","SSH","Content","Noon","Cairo","allow"
+"Ahmed","Server","SSH","Content","Noon","Cairo","deny"
+"Samy","DB","SSH","Content","Noon","Alex","allow"
+"Ahmed","Server","SSH","Content","Noon","Cairo","deny"
