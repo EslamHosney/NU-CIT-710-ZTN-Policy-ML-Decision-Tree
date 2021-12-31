@@ -5,6 +5,7 @@ Created on Thu Dec 23 12:44:19 2021
 @author: eslam
 """
 import netaddr
+from DAAS import DAAS
 
 class KiplingTrafficFlow:
     """
@@ -18,10 +19,18 @@ class KiplingTrafficFlow:
         self.When = When
         self.Where = Where
 
-    def match(self):
-        flow = KiplingTrafficFlow()
-        if (self.UserID == flow.UserID and self.AppID == flow.AppID and self.ContentID == flow.ContentID and self.When == flow.When and self.Where == flow.Where):
+    def __eq__(self, other):
+        if (self.UserID == other.UserID and self.AppID == other.AppID and self.ContentID == other.ContentID and self.When == other.When and self.Where == other.Where):
             return True
         else:
             return False
 
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+if __name__ == "__main__":
+    eslam = DAAS(identity="Exchange", ip='1.1.1.1/32')
+    ahmed = DAAS(identity="Exchange", ip='1.1.1.2/32')    
+    eslamFlow = KiplingTrafficFlow(UserID=eslam, AppID="SSH", ContentID="Content", When="Noon", Where="Cairo")
+    ahmedFlow = KiplingTrafficFlow(UserID=ahmed, AppID="SSH", ContentID="Content", When="Noon", Where="Cairo")
+    print(eslamFlow != ahmedFlow)
