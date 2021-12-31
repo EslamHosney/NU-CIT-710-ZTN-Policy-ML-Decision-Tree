@@ -17,3 +17,11 @@ class KiplingTrafficFlow:
         self.ContentID = ContentID
         self.When = When
         self.Where = Where
+
+    def match(self):
+        flow = KiplingTrafficFlow()
+        if (self.UserID == flow.UserID and self.AppID == flow.AppID and self.ContentID == flow.ContentID and self.When == flow.When and self.Where == flow.Where):
+            return True
+        else:
+            return False
+

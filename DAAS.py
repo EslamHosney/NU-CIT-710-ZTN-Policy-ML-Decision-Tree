@@ -22,15 +22,24 @@ class DAAS:
     (IoT) devices
     • Services—DNS, DHCP, and Active Directory®
     """
-    def __init__(self, identity=None, name=None, ip=None):
+    def __init__(self, identity=None, ip=None):
         self.identity = identity
-        self.name = name
         self.ip = ip
 
-    def getRouteTable(self):
-        #return routeing table
-        pass
+    def __eq__(self, other):
+        if ((self.identity == other.identity and self.identity != None) or (self.ip == other.ip and self.ip != None)):
+            return True
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    # def getRouteTable(self):
+    #     #return routeing table
+    #     pass
     
-    
-eslam = DAAS(identity="Exchange")
-print(eslam.identity, eslam.ip, eslam.name)
+if __name__ == "__main__":    
+    eslam = DAAS(identity="Exchange", ip='1.1.1.1/32')
+    ahmed = DAAS(identity="Exchange", ip='1.1.1.2/32')
+    print(eslam == ahmed)
