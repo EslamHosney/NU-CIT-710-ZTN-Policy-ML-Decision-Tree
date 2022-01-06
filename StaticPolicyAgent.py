@@ -41,6 +41,6 @@ class StaticPolicyAgent:
         return None
     
 if __name__ == "__main__":
-    flow = KiplingTrafficFlow({"UserID":"Samy", "destinationID":"DB","AppID":"SSH","ContentID":"Content","When":"Noon","Where":"Cairo"})
+    flow = KiplingTrafficFlow({"UserID":"Mostafa", "destinationID":"DB","AppID":"SSH","ContentID":"Content","When":"Noon","Where":"Alex"})
     policy = StaticPolicyAgent()
     print (policy.validateFlow(flow))

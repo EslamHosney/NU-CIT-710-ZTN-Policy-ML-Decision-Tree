@@ -23,8 +23,8 @@ if __name__ == "__main__":
     feeds = SecurityFeeds().validateFlow(flow)
     ml = MLPolicies().validateFlow(flow)
 
-    if None == None:
-        print ("Working")
+    # if None == None:
+    #     print ("Working")
     
     
     
