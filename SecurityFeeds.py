@@ -25,7 +25,7 @@ class SecurityFeeds:
         for key in kwargs:
             setattr(self,key,kwargs[key]) 
 
-    def validateFlow(self,flow):
+    def validateFlow(self,flow,policiesFileName = "StaticPolicyAgentPolicies.csv"):
         #return action based on Static Security input might be (allow, deny, None)
 
         #Read csv into list of dict
@@ -36,7 +36,7 @@ class SecurityFeeds:
         #Check if any policy matches the flow using Class KiplingTrafficFlow if matched return action else return None
         for feed in SecurityFeeds:
             # policyFlow = KiplingTrafficFlow(policy)
-            print (feed, flow.destinationID, feed['maliciousDest'] == flow.destinationID)
+            # print (feed, flow.destinationID, feed['maliciousDest'] == flow.destinationID)
             if flow.destinationID == feed['maliciousDest']: return 'deny'
         return None
     

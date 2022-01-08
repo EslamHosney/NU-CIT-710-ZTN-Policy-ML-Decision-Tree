@@ -14,6 +14,9 @@ from sklearn import tree
 from sklearn.preprocessing import OneHotEncoder
 from sklearn import preprocessing
 
+
+
+
 class MLPolicies:
     """
     Machine learning could be used to discover hidden patterns in data. 
@@ -28,73 +31,64 @@ class MLPolicies:
     it will be validated against the trained model Algorithms to be used 
     (Decision tree)
     """
-    def __init__(self, identity=None, name=None, ip=None):
-        self.identity = identity
-        self.name = name
-        self.ip = ip
+    def __init__(self):
+        return
 
-    def validateFlow(self,flow):
-        #return action based on ML Policies input might be (True, None, False)
+    def validateFlow(self,testingPoliciesFileName = "TestingPolicies.csv",policiesFileName = "StaticPolicyAgentPolicies.csv"):
+        # print (graphviz.__file__)
+        # Read Training set from csv file 
+        trainingPolicies    = pd.read_csv(policiesFileName)
+        testingPolicies     = pd.read_csv(testingPoliciesFileName)
+    
+        trainingFlow        = trainingPolicies.values[:, :-1]               # features
+        trainingAction      = trainingPolicies.values[:, -1]                # class
+    
+        testingFlow         = testingPolicies.values[:, :-1]                # features
+        testingAction       = testingPolicies.values[:, -1]                 # class
+    
+        # OneHotEncoder for X 
+        featuresEncoder = OneHotEncoder(handle_unknown='ignore')                        # Transform string features into 1 and 0
+        featuresEncoder.fit(trainingFlow)                                               # fit training data
+    
+        trafficFlowEncoded = featuresEncoder.transform(trainingFlow).toarray()
+        testingFlowEncoded = featuresEncoder.transform(testingFlow).toarray()
+        # get features names ["UserID","destinationID","AppID","ContentID","When","Where"]
+        featureNamesEncoded = featuresEncoder.get_feature_names(list(trainingPolicies.head())[:-1])
+    
+        # LabelEncoder for y
+        labelEncoder = preprocessing.LabelEncoder()
+        labelEncoder.fit(np.unique(trainingAction))
+        trainingActionEncoded = labelEncoder.transform(trainingAction)
+        # print ("Training encoded")
+        # print (trainingActionEncoded)
+        
+        # Fit the classifier with default hyper-parameters
+        clf = DecisionTreeClassifier(random_state=1234)
+        model = clf.fit(trafficFlowEncoded, trainingActionEncoded)
+    
+
+        # Run against testing Data
+        testingActionPredictedEncoded = clf.predict(testingFlowEncoded)
+        # print (labelEncoder.inverse_transform(testingActionPredictedEncoded))
+        for action in labelEncoder.inverse_transform(testingActionPredictedEncoded):
+            print (action)
+    
+        # Visual Representation on teh Algorithm
+        # text_representation = tree.export_text(clf, feature_names=list(featureNamesEncoded))
+        # print(text_representation)
+        
+        fig = plt.figure(figsize=(50,50))
+        _ = tree.plot_tree(clf, 
+                        feature_names=featureNamesEncoded,  
+                        class_names=["allow", "deny"],
+                        proportion=True,
+                        filled=False)
+        fig.savefig("decistion_tree.png")
         return True
 
 
 if __name__ == "__main__":
-    # flow = KiplingTrafficFlow({"UserID":"Mostafa", "destinationID":"DB","AppID":"SSH","ContentID":"Content","When":"Noon","Where":"Alex"})
-    # policy = StaticPolicyAgent()
-    # print (policy.validateFlow(flow))
-
-    # Read Training set from csv file 
-    policies = pd.read_csv("StaticPolicyAgentPolicies.csv")
-    trafficFlow = policies.values[:, :-1]           # features
-    policyAction = policies.values[:, -1]           # class
-
-    # OneHotEncoder for X 
-    enc = OneHotEncoder(handle_unknown='ignore')    # Transform string features into 1 and 0
-    enc.fit(trafficFlow)                            # fit training data
-
-    trafficFlowEncoded = enc.transform(trafficFlow).toarray()
-    # featureNamesEncoded = enc.get_feature_names(["UserID","destinationID","AppID","ContentID","When","Where"])
-    # get features names
-    featureNamesEncoded = enc.get_feature_names(list(policies.head())[:-1])
-
-    # LabelEncoder for y
-    le = preprocessing.LabelEncoder()
-    le.fit(np.unique(policyAction))
-    # print (le.classes_)
-    # print (le.transform(policyAction))
-    policyActionEncoded = le.transform(policyAction)
-    # print (policyActionEncoded)
-
-    # Fit the classifier with default hyper-parameters
-    clf = DecisionTreeClassifier(random_state=1234)
-    model = clf.fit(trafficFlowEncoded, policyActionEncoded)
-
-    text_representation = tree.export_text(clf, feature_names=list(featureNamesEncoded))
-    print(text_representation)
-
-    # le.fit(np.array(set(policyAction)))
-    # print (le.fit(np.unique(policyAction)))
-    # print(le.transform["allow", "allow", "deny"])
-
-    # # Fit the classifier with default hyper-parameters
-    # clf = DecisionTreeClassifier(random_state=1234)
-    # model = clf.fit(trafficFlow, policyAction)
-
-    # text_representation = tree.export_text(clf)
-    # print(text_representation)
-    # print ("Hello World!")
-
-    # # Prepare the data data
-    # iris = datasets.load_iris()
-    # X = iris.data
-    # print (type(X))
-    # input("X:")
-    # y = iris.target
-    # print (y)
-    # input("y:")
-    # # Fit the classifier with default hyper-parameters
-    # clf = DecisionTreeClassifier(random_state=1234)
-    # model = clf.fit(X, y)
-
-    # text_representation = tree.export_text(clf)
-    # print(text_representation)
+    
+    x = MLPolicies()
+    x.validateFlow()
+ 

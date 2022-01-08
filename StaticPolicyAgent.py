@@ -26,7 +26,7 @@ class StaticPolicyAgent:
         for key in kwargs:
             setattr(self,key,kwargs[key]) 
 
-    def validateFlow(self,flow):
+    def validateFlow(self,flow,policiesFileName = "StaticPolicyAgentPolicies.csv"):
         #return action based on Static Security input might be (allow, deny, None)
 
         #Read csv into list of dict

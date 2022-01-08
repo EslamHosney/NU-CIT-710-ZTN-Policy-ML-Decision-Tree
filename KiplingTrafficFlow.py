@@ -5,7 +5,6 @@ Created on Thu Dec 23 12:44:19 2021
 @author: eslam
 """
 import netaddr
-#import pandas as pd
 import csv
 
 
@@ -19,12 +18,7 @@ class KiplingTrafficFlow:
     """
     #def __init__(self,UserID=None,destinationID=None,AppID=None,ContentID=None,When=None,Where=None,*initial_data,**kwargs):
     def __init__(self,*initial_data,**kwargs):
-        # self.UserID = UserID
-        # self.destinationID = destinationID
-        # self.AppID = AppID
-        # self.ContentID = ContentID
-        # self.When = When
-        # self.Where = Where 
+
         for dictionary in initial_data:
             for key in dictionary:
                 setattr(self,key,dictionary[key])

@@ -2,3 +2,6 @@ netaddr
 datetime
 pandas
 csv
+numpy
+matplotlib
+sklearn

@@ -1,8 +1,4 @@
 UserID,destinationID,AppID,ContentID,When,Where,Action
-"Eslam","Server","SSH","Content","Noon","Cairo","allow"
-"Eslam","DB","SSH","Content","Noon","Alex","deny"
-"Ahmed","Server","SSH","Content","Noon","Cairo","deny"
-"Eslam","Server","SSH","Content","Noon","Cairo","allow"
-"Ahmed","Server","SSH","Content","Noon","Cairo","deny"
-"Samy","DB","SSH","Content","Noon","Alex","allow"
-"Ahmed","Server","SSH","Content","Noon","Cairo","deny"
+"HR","HRServer","HTTPS","Content","WorkingHours","HQ","allow"
+"HR","FinanceServer","HTTPS","Content","WorkingHours","HQ","allow"
+"Tech","XXXXX","SSH","Content","WorkingHours","HQ","allow"

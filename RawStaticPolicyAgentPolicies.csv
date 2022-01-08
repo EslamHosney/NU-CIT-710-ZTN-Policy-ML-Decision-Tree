@@ -1,0 +1,6 @@
+UserID,destinationID,AppID,ContentID,When,Where,Action
+"HR","*","*","Content","WorkingHours","*","allow"
+"Finance","FinanceServer","HTTPS","Content","WorkingHours","HQ","allow"
+"Finance","*","*","Content","*","*","allow"
+"Tech","*","SSH","Content","*","*","deny"
+"*","*","SSH","Content","*","*","allow"
