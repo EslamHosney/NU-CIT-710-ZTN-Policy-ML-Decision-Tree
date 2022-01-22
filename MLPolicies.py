@@ -74,8 +74,8 @@ class MLPolicies:
             print (action)
     
         # Visual Representation on teh Algorithm
-        # text_representation = tree.export_text(clf, feature_names=list(featureNamesEncoded))
-        # print(text_representation)
+        text_representation = tree.export_text(clf, feature_names=list(featureNamesEncoded))
+        print(text_representation)
         
         fig = plt.figure(figsize=(50,50))
         _ = tree.plot_tree(clf, 

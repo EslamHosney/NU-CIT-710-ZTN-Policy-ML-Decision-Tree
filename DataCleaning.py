@@ -29,9 +29,7 @@ class DataCleaning:
             
         
     def getUniqueValuesColumn(self,twodList,columnId,removedValues):
-        # print(twodList)
-        #a = [['Noon', 'Cairo', 'deny'], ['Noon', 'Cairo', 'deny'], ['Noon', 'Cairo', 'deny']]
-        buff = list(set([ x[columnId] for x in twodList]))          #this will ensure only 1 existance of each value
+        buff = list(set([ x[columnId] for x in twodList]))                      #this will ensure only 1 existance of each value
         for value in removedValues:
             buff.remove(value)
         
@@ -41,9 +39,7 @@ class DataCleaning:
     def expandPolicies(self):
         generatedPolicies=[]
         raw_policies = list(csv.reader(open(self.rawFileName)))
-        generatedPolicies.append(raw_policies[0].copy())
-        #print (generatedPolicies)
-        raw_policies = raw_policies[1:]                     #remove first row
+        raw_policies = raw_policies[1:]                                         #remove first row which contains cloumn names
         
         # print(self.getUniqueValuesColumn(raw_policies, 0))
         
@@ -65,7 +61,9 @@ class DataCleaning:
                 generatedPolicies=[]
             else:
                 break
-        
+            
+        raw_policies = list(csv.reader(open(self.rawFileName)))
+        generatedPolicies.insert(0,raw_policies[0].copy())
         return generatedPolicies
 
     def save_csv(self, twodList, fileName):
