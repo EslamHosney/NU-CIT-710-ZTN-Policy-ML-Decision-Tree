@@ -7,6 +7,8 @@ Created on Sat Jan  8 11:19:45 2022
 import netaddr
 import csv
 import numpy as np
+import itertools
+
 
 from KiplingTrafficFlow import KiplingTrafficFlow
 
@@ -23,6 +25,9 @@ class DataCleaning:
         # self.generatedPolicies = []
         # policy = StaticPolicyAgent()
         generatedPolicies = self.expandPolicies()
+        generatedPolicies = self.removeDuplicateRows(generatedPolicies)
+        raw_policies = list(csv.reader(open(self.rawFileName)))
+        generatedPolicies.insert(0,raw_policies[0].copy())                      #Add the columns headers to the file
         self.save_csv(generatedPolicies, policiesFileName)
         # for x in generatedPolicies:
         #     print(x)
@@ -35,6 +40,10 @@ class DataCleaning:
         
         return buff
          
+    def removeDuplicateRows(self, x):
+        x.sort()
+        x = list(x for x,_ in itertools.groupby(x))
+        return x
         
     def expandPolicies(self):
         generatedPolicies=[]
@@ -56,14 +65,14 @@ class DataCleaning:
                 else:
                     generatedPolicies.append(raw_policies[x])
             
-            if (any("*" in sublist for sublist in generatedPolicies)):          #check if the result still comntains * to be removed in case of 1 line 2 *
+            if (any("*" in sublist for sublist in generatedPolicies)):          #check if the result still contains * to be removed in case of 1 line 2 *
                 raw_policies = generatedPolicies.copy()
                 generatedPolicies=[]
             else:
                 break
             
-        raw_policies = list(csv.reader(open(self.rawFileName)))
-        generatedPolicies.insert(0,raw_policies[0].copy())
+        # raw_policies = list(csv.reader(open(self.rawFileName)))
+        # generatedPolicies.insert(0,raw_policies[0].copy())
         return generatedPolicies
 
     def save_csv(self, twodList, fileName):
@@ -73,10 +82,10 @@ class DataCleaning:
         f.close()
         
     
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    # fileName = "RawStaticPolicyAgentPolicies.csv"
-    rawFileName = "RawStaticPolicyAgentPolicies.csv"
-    policiesFileName = "StaticPolicyAgentPolicies.csv"
-    data = DataCleaning(rawFileName, policiesFileName)
-    # print (policy.validateFlow(flow))
+#     # fileName = "RawStaticPolicyAgentPolicies.csv"
+#     rawFileName = "RawStaticPolicyAgentPolicies.csv"
+#     policiesFileName = "StaticPolicyAgentPolicies.csv"
+#     data = DataCleaning(rawFileName, policiesFileName)
+#     # print (policy.validateFlow(flow))

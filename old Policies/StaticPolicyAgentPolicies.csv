@@ -1,0 +1,12 @@
+UserID,destinationID,AppID,ContentID,When,Where,Action
+Finance,FinanceServer,HTTPS,Content,WorkingHours,HQ,allow
+Finance,FinanceServer,HTTPS,Content,WorkingHours,HQ,deny
+Finance,FinanceServer,SSH,Content,WorkingHours,HQ,allow
+Finance,FinanceServer,SSH,Content,WorkingHours,HQ,deny
+HR,FinanceServer,HTTPS,Content,WorkingHours,HQ,allow
+HR,FinanceServer,SSH,Content,WorkingHours,HQ,allow
+Regulatory,FinanceServer,HTTPS,Content,WorkingHours,HQ,deny
+Regulatory,FinanceServer,SSH,Content,WorkingHours,HQ,allow
+Regulatory,FinanceServer,SSH,Content,WorkingHours,HQ,deny
+Tech,FinanceServer,SSH,Content,WorkingHours,HQ,allow
+Tech,FinanceServer,SSH,Content,WorkingHours,HQ,deny

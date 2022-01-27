@@ -26,21 +26,27 @@ class StaticPolicyAgent:
         for key in kwargs:
             setattr(self,key,kwargs[key]) 
 
-    def validateFlow(self,flow,policiesFileName = "StaticPolicyAgentPolicies.csv"):
+    def validateFlow(self,flow,policiesFileName):
         #return action based on Static Security input might be (allow, deny, None)
 
         #Read csv into list of dict
-        with open('StaticPolicyAgentPolicies.csv') as f:
+        # with open('StaticPolicyAgentPolicies.csv') as f:
+        with open(policiesFileName) as f:            
             StaticPolicyAgentPolicies = [{k: v for k, v in row.items()}
                 for row in csv.DictReader(f, skipinitialspace=True)]
 
         #Check if any policy matches the flow using Class KiplingTrafficFlow if matched return action else return None
         for policy in StaticPolicyAgentPolicies:
             policyFlow = KiplingTrafficFlow(policy)
+            
+            # temp = vars(flow)
+            # for item in temp:
+            #     print (item , ' : ' , temp[item])
+            
             if flow == policyFlow: return policy['Action']
         return None
     
-if __name__ == "__main__":
-    flow = KiplingTrafficFlow({"UserID":"Mostafa", "destinationID":"DB","AppID":"SSH","ContentID":"Content","When":"Noon","Where":"Alex"})
-    policy = StaticPolicyAgent()
-    print (policy.validateFlow(flow))
+# if __name__ == "__main__":
+#     flow = KiplingTrafficFlow({"UserID":"Mostafa", "destinationID":"DB","AppID":"SSH","ContentID":"Content","When":"Noon","Where":"Alex"})
+#     policy = StaticPolicyAgent()
+#     print (policy.validateFlow(flow))

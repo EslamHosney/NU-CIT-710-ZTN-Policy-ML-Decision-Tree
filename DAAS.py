@@ -39,7 +39,7 @@ class DAAS:
     #     #return routeing table
     #     pass
     
-if __name__ == "__main__":    
-    eslam = DAAS(identity="Exchange", ip='1.1.1.1/32')
-    ahmed = DAAS(identity="Exchange", ip='1.1.1.2/32')
-    print(eslam == ahmed)
+# if __name__ == "__main__":    
+#     eslam = DAAS(identity="Exchange", ip='1.1.1.1/32')
+#     ahmed = DAAS(identity="Exchange", ip='1.1.1.2/32')
+#     print(eslam == ahmed)

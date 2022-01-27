@@ -15,11 +15,17 @@ from MLPolicies import MLPolicies
 from DataCleaning import DataCleaning
 
 if __name__ == "__main__":
-    rawFileName = "RawStaticPolicyAgentPolicies.csv"
-    policiesFileName = "StaticPolicyAgentPolicies.csv"                                                            
-    testingPoliciesFileName = "TestingPolicies.csv"
-    securityFeedsFileName = "SecurityFeeds.csv"
-    MLpoliciesFileName = "StaticPolicyAgentPolicies.csv" 
+    rawFileName = "RawStaticPolicyAgentPolicies - Copy.csv"
+    policiesFileName = "StaticPolicyAgentPolicies - Copy.csv"                                                            
+    testingPoliciesFileName = "TestingPolicies - Copy.csv"
+    securityFeedsFileName = "SecurityFeeds - Copy.csv"
+    MLpoliciesFileName = "StaticPolicyAgentPolicies - Copy.csv" 
+
+    # rawFileName = "RawStaticPolicyAgentPolicies.csv"
+    # policiesFileName = "StaticPolicyAgentPolicies.csv"                                                            
+    # testingPoliciesFileName = "TestingPolicies.csv"
+    # securityFeedsFileName = "SecurityFeeds.csv"
+    # MLpoliciesFileName = "StaticPolicyAgentPolicies.csv" 
     
     # Data cleaning
     data = DataCleaning(rawFileName, policiesFileName)
@@ -33,6 +39,7 @@ if __name__ == "__main__":
     print("Static Policies Action")        
     policy = StaticPolicyAgent()    
     for flow in testingDict:
+        # print (flow)
         policyFlow = KiplingTrafficFlow(flow)
         print (policy.validateFlow(policyFlow, policiesFileName = policiesFileName))
 

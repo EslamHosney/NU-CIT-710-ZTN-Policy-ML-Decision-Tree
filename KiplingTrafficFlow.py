@@ -35,21 +35,21 @@ class KiplingTrafficFlow:
         return not self.__eq__(other)
 
 
-if __name__ == "__main__":
-    # eslam = DAAS(identity="Exchange",ip='1.1.1.1/32')
-    # ahmed = DAAS(identity="Exchange",ip='1.1.1.2/32')    
-    # eslamFlow = KiplingTrafficFlow(UserID=eslam,AppID="SSH",ContentID="Content",When="Noon",Where="Cairo")
-    # ahmedFlow = KiplingTrafficFlow(UserID=ahmed,AppID="SSH",ContentID="Content",When="Noon",Where="Cairo")
-    # print(eslamFlow != ahmedFlow)
-    # file = pd.read_csv("staticFlows.csv")
-    # print (file)
-    # flow = {"UserID":"eslamdict", "destinationID":"Server","AppID":"SSH","ContentID":"Content","When":"Noon","Where":"Cairo"}
-    # flowDict = KiplingTrafficFlow(flow)
-    # print (flowDict.Where)
-    with open('StaticPolicyAgentPolicies.csv') as f:
-        flowsDict = [{k: v for k, v in row.items()}
-            for row in csv.DictReader(f, skipinitialspace=True)]
-    print (flowsDict)
-    for flow in flowsDict:
-        policyFlow = KiplingTrafficFlow(flow)
-        print(policyFlow.UserID)
+# if __name__ == "__main__":
+#     # eslam = DAAS(identity="Exchange",ip='1.1.1.1/32')
+#     # ahmed = DAAS(identity="Exchange",ip='1.1.1.2/32')    
+#     # eslamFlow = KiplingTrafficFlow(UserID=eslam,AppID="SSH",ContentID="Content",When="Noon",Where="Cairo")
+#     # ahmedFlow = KiplingTrafficFlow(UserID=ahmed,AppID="SSH",ContentID="Content",When="Noon",Where="Cairo")
+#     # print(eslamFlow != ahmedFlow)
+#     # file = pd.read_csv("staticFlows.csv")
+#     # print (file)
+#     # flow = {"UserID":"eslamdict", "destinationID":"Server","AppID":"SSH","ContentID":"Content","When":"Noon","Where":"Cairo"}
+#     # flowDict = KiplingTrafficFlow(flow)
+#     # print (flowDict.Where)
+#     with open('StaticPolicyAgentPolicies.csv') as f:
+#         flowsDict = [{k: v for k, v in row.items()}
+#             for row in csv.DictReader(f, skipinitialspace=True)]
+#     print (flowsDict)
+#     for flow in flowsDict:
+#         policyFlow = KiplingTrafficFlow(flow)
+#         print(policyFlow.UserID)

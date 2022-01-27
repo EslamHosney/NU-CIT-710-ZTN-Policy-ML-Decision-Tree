@@ -13,7 +13,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
 from sklearn.preprocessing import OneHotEncoder
 from sklearn import preprocessing
-
+from sklearn.metrics import classification_report
 
 
 
@@ -55,12 +55,21 @@ class MLPolicies:
         # get features names ["UserID","destinationID","AppID","ContentID","When","Where"]
         featureNamesEncoded = featuresEncoder.get_feature_names(list(trainingPolicies.head())[:-1])
     
-        # LabelEncoder for y
-        labelEncoder = preprocessing.LabelEncoder()
-        labelEncoder.fit(np.unique(trainingAction))
-        trainingActionEncoded = labelEncoder.transform(trainingAction)
+        # LabelEncoder for y trainig
+        trainingLabelEncoder = preprocessing.LabelEncoder()
+        trainingLabelEncoder.fit(np.unique(trainingAction))
+        trainingActionEncoded = trainingLabelEncoder.transform(trainingAction)
         # print ("Training encoded")
         # print (trainingActionEncoded)
+        
+        # LabelEncoder for y testing
+        testingLabelEncoder = preprocessing.LabelEncoder()
+        testingLabelEncoder.fit(np.unique(testingAction))
+        testingActionEncoded = trainingLabelEncoder.transform(testingAction)
+        # print ("Testing encoded")
+        # print (testingActionEncoded)
+        
+        
         
         # Fit the classifier with default hyper-parameters
         clf = DecisionTreeClassifier(random_state=1234)
@@ -70,9 +79,14 @@ class MLPolicies:
         # Run against testing Data
         testingActionPredictedEncoded = clf.predict(testingFlowEncoded)
         # print (labelEncoder.inverse_transform(testingActionPredictedEncoded))
-        for action in labelEncoder.inverse_transform(testingActionPredictedEncoded):
+        for action in trainingLabelEncoder.inverse_transform(testingActionPredictedEncoded):
             print (action)
-    
+        
+        # Print ML metrices
+        print (testingActionEncoded)
+        print (testingActionPredictedEncoded)
+        print (classification_report(y_true=testingActionEncoded, y_pred=testingActionPredictedEncoded))
+        
         # Visual Representation on teh Algorithm
         text_representation = tree.export_text(clf, feature_names=list(featureNamesEncoded))
         print(text_representation)
@@ -90,5 +104,6 @@ class MLPolicies:
 if __name__ == "__main__":
     
     x = MLPolicies()
-    x.validateFlow()
+    # x.validateFlow()
+    x.validateFlow(testingPoliciesFileName = "TestingPolicies - Copy.csv",policiesFileName = "StaticPolicyAgentPolicies - Copy.csv")
  
