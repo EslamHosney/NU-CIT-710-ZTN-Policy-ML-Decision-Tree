@@ -25,11 +25,11 @@ class SecurityFeeds:
         for key in kwargs:
             setattr(self,key,kwargs[key]) 
 
-    def validateFlow(self,flow,policiesFileName = "StaticPolicyAgentPolicies.csv"):
+    def validateFlow(self,flow,policiesFileName = "SecurityFeeds - Copy.csv"):
         #return action based on Static Security input might be (allow, deny, None)
 
         #Read csv into list of dict
-        with open('SecurityFeeds.csv') as f:
+        with open(policiesFileName) as f:
             SecurityFeeds = [{k: v for k, v in row.items()}
                 for row in csv.DictReader(f, skipinitialspace=True)]
 

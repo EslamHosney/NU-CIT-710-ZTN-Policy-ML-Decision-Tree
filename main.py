@@ -48,7 +48,7 @@ if __name__ == "__main__":
     policy = SecurityFeeds()    
     for flow in testingDict:
         policyFlow = KiplingTrafficFlow(flow)
-        print (policy.validateFlow(policyFlow, policiesFileName = policiesFileName))
+        print (policy.validateFlow(policyFlow, policiesFileName = securityFeedsFileName))
         
     # Machine Learning Policies
     print("Machine Learning Action")

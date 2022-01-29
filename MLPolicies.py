@@ -95,9 +95,11 @@ class MLPolicies:
         _ = tree.plot_tree(clf, 
                         feature_names=featureNamesEncoded,  
                         class_names=["allow", "deny"],
+                        max_depth=4,
                         proportion=True,
-                        filled=False)
-        fig.savefig("decistion_tree.png")
+                        filled=False,
+                        fontsize=32)
+        fig.savefig("decistion_tree_Copy.png")
         return True
 
 
